@@ -1,0 +1,46 @@
+using System;
+class Program
+    {
+        static void Main()
+        {
+        Console.WriteLine("Welcome to C# Training ");
+        }
+    }
+
+//alternate method
+class Program
+    {
+        static void Main()
+        {
+        System.Console.WriteLine("Welcome to C# Training ");
+        }
+    }
+    
+    //Main Method
+    using System;
+class Program
+    {
+        static void Main1()
+        {
+        Console.WriteLine("Welcome to C# Training 1 ");
+        }
+    static void Main()
+    {
+        Console.WriteLine("Welcome to C# Training ");
+    }
+}
+
+//Main method with correct execution
+using System;
+class Program
+    {
+        static void Main1()
+        {
+        Console.WriteLine("Welcome to C# Training 1 ");
+        }
+    static void Main()
+    {
+        Console.WriteLine("Welcome to C# Training ");
+        Main1();
+    }
+}
