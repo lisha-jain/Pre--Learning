@@ -1,0 +1,116 @@
+//Assignment operator
+using System;
+class Program
+    {
+
+    static void Main()
+    {
+        int i = 10;
+        bool b = true;
+    }
+}
+
+//Aritchmetic Opertor
+using System;
+class Program
+    {
+
+    static void Main()
+    {
+        int a = 10;
+        int b = 20;
+        int c = a + b;
+        Console.WriteLine(c);
+    }
+}
+
+//Division
+using System;
+class Program
+    {
+
+    static void Main()
+    {
+        int Num = 10;
+        int Den = 2;
+        int Result = Num / Den;
+        Console.WriteLine("Result = {0}", Result);
+    }
+}
+
+//Modulus
+using System;
+class Program
+    {
+
+    static void Main()
+    {
+        int Num = 10;
+        int Den = 2;
+        int Result = Num % Den;
+        Console.WriteLine("Result = {0}", Result);
+    }
+}
+
+//and logic
+using System;
+class Program
+    {
+    static void Main()
+    {
+        int num = 10;
+        int num1 = 20;
+        if (num == 10 && num1 == 20)
+        {
+            Console.WriteLine("Hello");
+        }
+    }
+}
+
+//or operator
+using System;
+class Program
+    {
+    static void Main()
+    {
+        int num = 10;
+        int num1 = 21;
+        if (num == 10 || num1 == 20)
+        {
+            Console.WriteLine("Hello");
+        }
+    }
+}
+
+//multiple operators
+using System;
+class Program
+    {
+    static void Main()
+    {
+        int num = 10;
+        bool isNumber10;
+        if (num == 10)
+        {
+            isNumber10 = true;
+        }
+        else
+        {
+            isNumber10 = false;
+        }
+        Console.WriteLine("num == 10 is {0}", isNumber10);
+    }
+}
+//ternary operator
+using System;
+class Program
+    {
+    static void Main()
+    {
+        int num = 10;
+        bool isNumber10 = num == 10 ? true : false;
+        Console.WriteLine("num == 10 is {0}", isNumber10);
+    }
+}
+
+//
