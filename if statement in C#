@@ -1,0 +1,91 @@
+//Approach 1
+using System;
+class Program
+    {
+ static void Main()
+    {
+        Console.WriteLine("Please enter a number");
+        int UserName = int.Parse(Console.ReadLine());
+        if (UserName == 1)
+        {
+            Console.WriteLine("your number is one");
+        }
+    }
+}
+
+//Approach 2
+using System;
+class Program
+    {
+ static void Main()
+    {
+        Console.WriteLine("Please enter a number");
+        int UserName = int.Parse(Console.ReadLine());
+        if (UserName == 1)
+        {
+            Console.WriteLine("your number is one");
+        }
+        if (UserName == 2)
+        {
+            Console.WriteLine("your number is two");
+        }
+        if (UserName ==3)
+        {
+            Console.WriteLine("your number is three");
+        }
+    }
+}
+//Approach 3
+using System;
+class Program
+    {
+ static void Main()
+    {
+        Console.WriteLine("Please enter a number");
+        int UserName = int.Parse(Console.ReadLine());
+        if (UserName == 1)
+        {
+            Console.WriteLine("your number is one");
+        }
+        if (UserName == 2)
+        {
+            Console.WriteLine("your number is two");
+        }
+        if (UserName ==3)
+        {
+            Console.WriteLine("your number is three");
+        }
+        if (UserName != 1 && UserName != 2 && UserName != 3)
+        {
+            Console.WriteLine("your number is not between 1 and 3 ");
+        }
+
+    }
+}
+
+//Approach 4
+using System;
+class Program
+    {
+ static void Main()
+    {
+        Console.WriteLine("Please enter a number");
+        int UserName = int.Parse(Console.ReadLine());
+        if (UserName == 1)
+        {
+            Console.WriteLine("your number is one");
+        }
+        else if (UserName == 2)
+        {
+            Console.WriteLine("your number is two");
+        }
+        else if (UserName == 3)
+        {
+            Console.WriteLine("your number is three");
+        }
+        else 
+            Console.WriteLine("your number is not between 1 and 3 ");
+        }
+    }
+}
+
