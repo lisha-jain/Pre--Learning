@@ -1,0 +1,44 @@
+//string
+using System;
+class Program
+    {
+
+    static void Main()
+    {
+        string Name = "Lisha";
+        Console.WriteLine(Name);
+    }
+}
+//escape sequence
+using System;
+class Program
+    {
+
+    static void Main()
+    {
+        string Name = "\"Lisha\"";
+        Console.WriteLine(Name);
+    }
+}
+//newline character(\n)
+using System;
+class Program
+    {
+
+    static void Main()
+    {
+        string Name = "One\nTwo\nThree";
+        Console.WriteLine(Name);
+    }
+}
+//to treat escape sequences as regular characters use "@"-VERBATIM LITERAL
+using System;
+class Program
+    {
+
+    static void Main()
+    {
+        string Name = @"One\nTwo\nThree";
+        Console.WriteLine(Name);
+    }
+}
