@@ -1,0 +1,84 @@
+//conversion without any explicit conversion
+using System;
+class Program
+    {
+ static void Main()
+    {
+        int i = 100;
+        float f = i;
+        Console.WriteLine(f);
+    }
+}
+
+//Typecasting
+using System;
+class Program
+    {
+ static void Main()
+    {
+
+        float f = 123.45F;
+        int i = (int)f;
+        Console.WriteLine(i);
+    }
+}
+
+//Convertor class
+using System;
+class Program
+    {
+ static void Main()
+    {
+
+        float f = 123.45F;
+        int i = Convert.ToInt32(f);
+        Console.WriteLine(i);
+    }
+}
+
+//Unhandled Exception Occurs when the number is out of range
+using System;
+class Program
+    {
+ static void Main()
+    {
+
+        float f = 123879565958659.45F;
+        int i = Convert.ToInt32(f);
+        Console.WriteLine(i);
+    }
+}
+
+//conversion of string to integer using parse
+using System;
+class Program
+    {
+ static void Main()
+    {
+        string strNumber = "100";
+        int i = int.Parse(strNumber);
+        Console.WriteLine(i);
+    }
+}
+
+//TryParse
+using System;
+class Program
+    {
+ static void Main()
+    {
+        string strNumber = "100TG";
+        int Result = 0;
+        bool isConversionSuccessfull = int.TryParse(strNumber, out Result);
+        if (isConversionSuccessfull)
+        {
+            Console.WriteLine(Result);
+        }
+        else
+        {
+            Console.WriteLine("Please enter a valid Number");
+        }
+    }
+}
+
+
