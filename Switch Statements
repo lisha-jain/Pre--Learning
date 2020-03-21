@@ -1,0 +1,195 @@
+//using if else
+using System;
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("please enter the number");
+        int UserNum = int.Parse(Console.ReadLine());
+        if (UserNum == 10)
+        {
+            Console.WriteLine("Your number is 10");
+        }
+        else if (UserNum == 20)
+        {
+            Console.WriteLine("Your number is 20");
+        }
+        else if (UserNum == 30)
+        {
+            Console.WriteLine("Your number is 30");
+        }
+        else
+        {
+            Console.WriteLine("Your number is not 10, 20 or 30");
+        }
+
+    }
+}
+
+//switch statement
+using System;
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("please enter the number");
+        int UserNum = int.Parse(Console.ReadLine());
+        switch (UserNum)
+        {
+            case 10:
+                Console.WriteLine("your number is 10");
+                break;
+            case 20:
+                Console.WriteLine("your number is 20");
+                break;
+            case 30:
+                Console.WriteLine("your number is 30");
+                break;
+            default:
+                Console.WriteLine("Your number is not 10, 20 & 30");
+                break;
+        }
+    }
+}
+
+//Combining the Case Statements
+using System;
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("please enter the number");
+        int UserNum = int.Parse(Console.ReadLine());
+        switch (UserNum)
+        {
+            case 10:
+            case 20:
+            case 30:
+                Console.WriteLine("your number is {0}", UserNum);
+                break;
+            default:
+                Console.WriteLine("Your number is not 10, 20 & 30");
+                break;
+        }
+    }
+}
+//alternate
+using System;
+class Program
+{
+    static void Main()
+    {
+        int TotalCoffeeCost = 0;
+        Console.WriteLine("1 - Small, 2 - Medium, 3- Large");
+        int UserChoice = int.Parse(Console.ReadLine());
+        switch(UserChoice)
+        {
+            case 1:
+                TotalCoffeeCost += 1;
+                break;
+            case 2:
+                TotalCoffeeCost += 2;
+                break;
+            case 3:
+                TotalCoffeeCost += 3;
+                break;
+            default:
+                Console.WriteLine("your choice is invalid ", UserChoice);
+                break;
+        }
+        Console.WriteLine("Thankyou for shopping with us");
+        Console.WriteLine("Bill amount = {0}", TotalCoffeeCost);
+    }
+}
+
+//Modified
+using System;
+class Program
+{
+    static void Main()
+    {
+        int TotalCoffeeCost = 0;
+        Start:
+        Console.WriteLine("1 - Small, 2 - Medium, 3- Large");
+        int UserChoice = int.Parse(Console.ReadLine());
+        switch(UserChoice)
+        {
+            case 1:
+                TotalCoffeeCost += 1;
+                break;
+            case 2:
+                TotalCoffeeCost += 2;
+                break;
+            case 3:
+                TotalCoffeeCost += 3;
+                break;
+            default:
+                Console.WriteLine("your choice is invalid ", UserChoice);
+                break;
+        }
+        Decide:
+        Console.WriteLine("Do you want to buy another Coffee - Yes or No");
+        string UserDecision = Console.ReadLine();
+
+        switch(UserDecision)
+        {
+            case "Yes":
+                goto Start;
+            case "No":
+                break;
+            default:
+                Console.WriteLine("Your choice {0} is invalid. Please try Again...");
+                goto Decide;
+        }
+        Console.WriteLine("Thankyou for shopping with us");
+        Console.WriteLine("Bill amount = {0}", TotalCoffeeCost);
+    }
+}
+
+//Altenate method
+using System;
+class Program
+{
+    static void Main()
+    {
+        int TotalCoffeeCost = 0;
+        Start:
+        Console.WriteLine("1 - Small, 2 - Medium, 3- Large");
+        int UserChoice = int.Parse(Console.ReadLine());
+        switch(UserChoice)
+        {
+            case 1:
+                TotalCoffeeCost += 1;
+                break;
+            case 2:
+                TotalCoffeeCost += 2;
+                break;
+            case 3:
+                TotalCoffeeCost += 3;
+                break;
+            default:
+                Console.WriteLine("your choice is invalid ", UserChoice);
+                break;
+        }
+        Decide:
+        Console.WriteLine("Do you want to buy another Coffee - Yes or No");
+        string UserDecision = Console.ReadLine();
+
+        switch(UserDecision.ToUpper())
+        {
+            case "YES":
+                goto Start;
+            case "NO":
+                break;
+            default:
+                Console.WriteLine("Your choice {0} is invalid. Please try Again...",UserDecision);
+                goto Decide;
+        }
+        Console.WriteLine("Thankyou for shopping with us");
+        Console.WriteLine("Bill amount = {0}", TotalCoffeeCost);
+    }
+}
+
+
+
+
