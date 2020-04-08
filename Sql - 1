@@ -1,0 +1,25 @@
+// create
+Create Database Sample2
+
+//Alter
+Alter Database Sample2 Modify Name = Sample3
+
+//stored procedure
+sp_renameDB 'Sample3', 'Sample4'
+
+//deleting or dropping
+Drop database Sample4
+
+//creating tables
+Use {Sample}
+Go
+
+Create Table tblGender
+{
+ID int NOT NULL Primary Key,
+Gender nvarchar(50) NOT NULL
+}
+
+//toAlterTheCreatedTable
+Alter table tblPerson add constraint tblPerson_GenderID_FK
+Foreign Key {GenderId} references tblGender{ID}
