@@ -1,0 +1,46 @@
+/4
+/Default constraint
+
+Select * from tblGender
+Select * from tblPerson
+
+Insert into tblPerson(ID, Name, Email) Values (7, 'Rich', 'r@r.com')
+
+ALTER TABLE tblPerson
+ADD CONSTRAINT DF_tblPerson_GenderId
+DEFAULT 3 FOR GENDERID
+
+
+Insert into tblPerson(ID, Name, Email, GenderId) Values (8, 'Sara', 's@r.com', 1)
+
+Insert into tblPerson(ID, Name, Email, GenderId) Values (9, 'Mike', 'm@r.com', NULL)
+
+/Drop Constraint
+ALTER TABLE tblPerson
+DROP CONSTRAINT DF_tblPerson_GenderId
+
+/5
+/Cascading referential integrity constraint
+
+
+Select * from tblGender
+Select * from tblPerson
+
+Delete from tblGender Where ID = 2
+
+/6
+/Adding a check constraint
+
+Select * from tblPerson
+
+Delete from tblPerson Where ID = 4
+Insert into tblPerson values(4, 'Sara', 's@r.com', 2, -970)
+
+Insert into tblPerson values(5, 'Sara', 's@r.com', 2, NULL)
+
+Alter Table tblPerson
+Drop Constraint CK_tblPerson_Age
+
+
+Alter Table tblPerson
+Add Constraint CK_tblPerson_Age CHECK (AGEE > 0 AND AGE < 150)
