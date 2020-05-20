@@ -1,0 +1,38 @@
+//2 - Prerequisites
+>understanding of HTML(basics)
+>Scripting
+>Viewing the xml through the web browser
+>Notepad
+
+//3- Course Overview
+>Basics 
+>What it is 
+>How it works
+>what it does
+
+//4- Data History
+Proprietary Format
+Unique to manufacturer
+Unique to platform
+HTML- Standard markup,browser based,limitations (database explosion)
+
+//5- Meet XML
+XML Code:
+<?xml version-"1.0" ?>
+
+<products>
+	<item>
+	   <itemno>876</itemno>
+	   <cost>76</cost>
+	</item>
+</product>
+
+//9- XML Expanding Universe
+XSL - Extensible Stylesheet Language
+will use XSLT to plan xml doc
+XSL- FO Formating objects
+XPATH - language used to write the queries and formating objects (allows to problematically go through the doc)
+XLINK - Hypertext links b/w html doc
+XPOINTER - works hand in hand with xlink, allows us to link in certain place
+
+//
