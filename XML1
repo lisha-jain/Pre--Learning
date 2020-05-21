@@ -1,0 +1,181 @@
+//11- Document Basics
+<?xml version = "1.0" ?>
+<people>
+     <husband>Mark</husband>
+     <neighbor>Matt</neighbor>
+</people>
+
+<?xml version = "1.0" ?>
+<people>
+     <husband>
+        <name>Mark</name>
+        <age>35</age>
+     </husband>   
+     <neighbor>Matt</neighbor>
+</people>
+
+//13-Viewing xml Documents
+<?xml version = "1.0" ?>
+
+<people>
+     <husband>
+        <name>Mark</name>
+        <age>35</age>
+     </husband>
+     <husband>
+        <name>john</name>
+        <age>45</age>
+     </husband>
+     <wife>
+        <name>Janet</name>
+        <age>33</age>
+     </wife>
+     <wife>
+        <name>Annie</name>
+        <age>43</age>
+     </wife>
+</people>
+
+//14-xml document structure
+-all tags are case sensitive
+-opening tags must have closing tags
+-tags should be properly nested
+-attribute values require quotes
+-root element req
+
+//17 - xml Document attributes
+
+<?xml version = "1.0" ?>
+
+<people>
+     <husband employed="yes">
+        <name>Mark</name>
+        <age>35</age>
+     </husband>
+     <husband employed="no">
+        <name>john</name>
+        <age>45</age>
+     </husband>
+     <wife>
+        <name>Janet</name>
+        <age>33</age>
+     </wife>
+     <wife>
+        <name>Annie</name>
+        <age>43</age>
+     </wife>
+</people>
+
+//18- XML Document vales
+<?xml version = "1.0" ?>
+
+<people>
+     <husband>
+        <name>Mark Long</name>
+        <age>35</age>
+        <employed>yes</employed>
+     </husband>
+     <husband employed="no">
+        <name>john</name>
+        <age>45</age>
+     </husband>
+     <wife>
+        <name>Janet</name>
+        <age>33</age>
+     </wife>
+     <wife>
+        <name>Annie</name>
+        <age>43</age>
+     </wife>
+</people>
+
+//19- XML Document Special Characters
+
+<?xml version = "1.0" ?>
+==>1
+<people>
+     <husband>
+        <name>&lt;Mark&gt;</name>
+        <age>35</age>
+     </husband>
+     <husband>
+        <name>john</name>
+        <age>45</age>
+     </husband>
+     <wife>
+        <name>Janet</name>
+        <age>33</age>
+     </wife>
+     <wife>
+        <name>Annie</name>
+        <age>43</age>
+     </wife>
+</people>
+
+==>2
+<?xml version = "1.0" ?>
+
+<people>
+     <husband>
+        <name>&quot;Mark&quot;</name>
+        <age>35</age>
+     </husband>
+     <husband>
+        <name>john</name>
+        <age>45</age>
+     </husband>
+     <wife>
+        <name>Janet</name>
+        <age>33</age>
+     </wife>
+     <wife>
+        <name>Annie</name>
+        <age>43</age>
+     </wife>
+</people>
+
+==>3
+<?xml version = "1.0" ?>
+
+<people>
+     <husband>
+        <name>&amp;Mark</name>
+        <age>35</age>
+     </husband>
+     <husband>
+        <name>john</name>
+        <age>45</age>
+     </husband>
+     <wife>
+        <name>Janet</name>
+        <age>33</age>
+     </wife>
+     <wife>
+        <name>Annie</name>
+        <age>43</age>
+     </wife>
+</people>
+
+//20- Comments in XML
+
+<?xml version = "1.0" ?>
+<!-- This is a list -->
+<people>
+     <husband>
+        <name>Mark</name>
+        <age>35</age>
+     </husband>
+     <husband>
+        <name>john</name>
+        <age>45</age>
+     </husband>
+     <wife>
+        <name>Janet</name>
+        <age>33</age>
+     </wife>
+     <wife>
+        <name>Annie</name>
+        <age>43</age>
+     </wife>
+</people>
+
