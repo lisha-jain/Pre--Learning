@@ -1,0 +1,414 @@
+PROJECT CODES
+ROBOT FINAL
+//variable and pin definitions
+const int trigPin1 = PA0;
+const int echoPin1 = PA1;
+const int trigPin2 = PA3;
+const int echoPin2 = PA4;
+const int analogip1 = PA2;
+const int analogip2 = PA7;
+
+const int front1 = PA11;                         //LEFT WHEEL FORWARD.CONNECTED TO OUT-1 OF DRIVER
+const int front2 = PA12;                         //RIGHT WHEEL FORWARD.CONNECTED TO OUT-4 OF DRIVER
+const int back1 = PA15;                          //LEFT WHEEL BACKWARD.CONNECTED TO OUT-2 OF DRIVER
+const int back2 = PB3;                           //RIGHT WHEEL BACKWARD.CONNECTED TO OUT-3 OF DRIVER
+const int control = PB4;
+float control_ip = 0;
+
+int IRsensor1counter = 0;
+int IRsensor2counter = 0;
+int US1counter = 0;
+int US2counter = 0;
+float duration1;
+float distance1;
+float duration2;
+float distance2;
+
+
+void setup()
+{
+pinMode(trigPin1,OUTPUT);  // Sets the trigPin as an Output
+pinMode(echoPin1,INPUT);   // Sets the echoPin as an Input
+pinMode(trigPin1,OUTPUT);
+pinMode(echoPin1,INPUT);
+pinMode(analogip1,INPUT);
+pinMode(analogip2,INPUT);
+
+pinMode(control, INPUT);
+pinMode(front1, OUTPUT);   //SET THE PINS AS OUTPUT PINS TO CONTROL THE MOTOR DRIVER IC
+pinMode(back1, OUTPUT);
+pinMode(front2, OUTPUT);
+pinMode(back2, OUTPUT);
+
+Serial.begin(9600);         // Starts the serial communication
+Serial1.begin(9600);        // PA9 is TX1 and PA10 is RX1
+Serial.println("Initializing the GSM Module\n");
+delay(1000);
+
+Serial1.print("AT"); //Once the handshake test is successful, it will back to OK
+updateSerial();
+delay(1000);
+
+Serial1.println("AT+CMGF=1"); // Configuring TEXT mode
+updateSerial();
+delay(1000);
+
+Serial1.println("AT+CMGS=\"+919004085554\""); //Number to send SMS to
+updateSerial();
+delay(1000);
+
+Serial1.println("GSM module setup has been completed!"); //SMS contents
+updateSerial();
+delay(1000);
+
+}
+
+
+void loop() 
+{
+//analog sensor-1 reading;
+float val1 = digitalRead(analogip1); 
+float voltage1 = (float(val1)/4096) * 3.3;
+Serial.print("\n\nValue measured by IR sensor-1 is: ");
+Serial.print(val1);
+if (val1 == 0)
+{IRsensor1counter++;
+if (IRsensor1counter > 15)
+Serial.println("\nBIG CRACK DETECTED BY IR SENSOR-1!");}
+else 
+{IRsensor1counter = 0;}
+delayMicroseconds(2);
+
+//analog sensor-2 reading;
+float val2 = digitalRead(analogip2); 
+float voltage2 = (float(val2)/4096) * 3.3;
+Serial.print("\nValue measured by IR sensor-2 is: ");
+Serial.print(val1);
+if (val2 == 0)
+{IRsensor2counter++;
+if (IRsensor2counter > 15)
+Serial.println("\n\nBIG CRACK DETECTED BY IR SENSOR-2!");}
+else 
+{IRsensor2counter = 0;}
+delayMicroseconds(2);
+
+// Clears trigPin1
+digitalWrite(trigPin1, LOW);
+delayMicroseconds(2);
+// Sets the trigPin1 on HIGH state for 10 micro seconds
+digitalWrite(trigPin1, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin1, LOW);
+// Reads the echoPin1, returns the sound wave travel time in microseconds
+duration1 = pulseIn(echoPin1, HIGH);
+
+// Clears trigPin2
+digitalWrite(trigPin2, LOW);
+delayMicroseconds(2);
+// Sets the trigPin2 on HIGH state for 10 micro seconds
+digitalWrite(trigPin2, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin2, LOW);
+// Reads the echoPin2, returns the sound wave travel time in microseconds
+duration2 = pulseIn(echoPin2, HIGH);
+
+// Calculating the distances
+distance1 = duration1*0.034/2;
+Serial.print("\nDistance of Ultrasonic Sensor-1 in cm: ");
+Serial.print(distance1);
+if (distance1 < 4)
+{US1counter++;
+if (US1counter > 15)
+Serial.println("\n\nBIG CRACK DETECTED BY ULTRASONIC SENSOR-1!");}
+else 
+{US1counter = 0;}
+
+distance2 = duration2*0.034/2;
+Serial.print("\nDistance of Ultrasonic Sensor-2 in cm: ");
+Serial.print(distance2);
+if (distance2 < 4)
+{US2counter++;
+if (US2counter > 15)
+Serial.println("\n\nBIG CRACK DETECTED BY ULTRASONIC SENSOR-2!");}
+else 
+{US2counter = 0;}
+
+//CONTROLLING THE MOVEMENT OF THE ROBOT
+control_ip = digitalRead(control);
+if (control_ip == HIGH)
+{
+      digitalWrite(front1, HIGH);         //SET BOTH WHEELS TO MOVE FORWARD
+      digitalWrite(front2, HIGH);
+      digitalWrite(back1, LOW);
+      digitalWrite(back2, LOW);
+      delay(1000);                       //KEEP THE WHEELS MOVING FORWARD FOR A SHORT TIME PERIOD
+      digitalWrite(front1, LOW);         //TURN OFF THE MOTORS 
+      digitalWrite(front2, LOW);
+}
+else if (control_ip == LOW)
+{
+      digitalWrite(back1, HIGH);     
+      digitalWrite(back2, HIGH);
+      digitalWrite(front1, LOW);
+      digitalWrite(front2, LOW);
+      delay(1000);
+      digitalWrite(back1, LOW);
+      digitalWrite(back2, LOW);        
+}    
+
+}
+
+
+void updateSerial()
+{
+  delay(1000);
+  while(Serial.available()) 
+  {
+    Serial1.write(Serial.read());//Forward what Serial received to Serial1 Port
+  }
+  while(Serial1.available()) 
+  {
+    Serial.write(Serial1.read());//Forward what Serial1 received to Serial Port
+  }
+}
+
+
+
+
+
+
+ROBOT FRONT_BACK
+int front1=PA11;                         //LEFT WHEEL FORWARD.CONNECTED TO OUT-1 OF DRIVER
+int front2=PA12;                         //RIGHT WHEEL FORWARD.CONNECTED TO OUT-4 OF DRIVER
+int back1=PA15;                          //LEFT WHEEL BACKWARD.CONNECTED TO OUT-2 OF DRIVER
+int back2=PB3;                           //RIGHT WHEEL BACKWARD.CONNECTED TO OUT-3 OF DRIVER
+int control=PB4;
+
+void setup() 
+{      
+  pinMode(control, INPUT);
+  pinMode(front1, OUTPUT);               //SET THE PINS AS OUTPUT PINS TO CONTROL THE MOTOR DRIVER IC
+  pinMode(back1, OUTPUT);
+  pinMode(front2, OUTPUT);
+  pinMode(back2, OUTPUT);
+  delay(2000);
+}
+
+ void loop()  
+{
+ float control_ip = digitalRead(control); 
+ if (control_ip== HIGH)
+ {
+      digitalWrite(front1, HIGH);         //SET BOTH WHEELS TO MOVE FORWARD
+      digitalWrite(front2, HIGH);
+      digitalWrite(back1, LOW);
+      digitalWrite(back2, LOW);
+      delay(1000);                       //KEEP THE WHEELS MOVING FORWARD FOR A SHORT TIME PERIOD
+      digitalWrite(front1, LOW);         //TURN OFF THE MOTORS 
+      digitalWrite(front2, LOW);
+ }
+ else if (control_ip==LOW)
+      {
+      digitalWrite(back1, HIGH);     
+      digitalWrite(back2, HIGH);
+      digitalWrite(front1, LOW);
+      digitalWrite(front2, LOW);
+      delay(1000);
+      digitalWrite(back1, LOW);
+      digitalWrite(back2, LOW);        
+      }                  
+} 
+
+
+
+
+STM32_SIM800_FINAL
+void setup()
+{
+  //Begin serial communication between STM32 and Arduino IDE (Serial Monitor)
+  Serial.begin(9600);
+  delay(1000);
+  Serial.println("Initializing...");
+  
+  //Begin serial communication of SIM800L with STM32
+  Serial1.begin(9600);
+  delay(1000);
+  
+  Serial1.print("AT"); //Once the handshake test is successful, it will back to OK
+  updateSerial();
+  delay(1000);
+  
+  Serial1.println("AT+CMGF=1"); // Configuring TEXT mode
+  updateSerial();
+  delay(1000);
+  
+  Serial1.println("AT+CMGS=\"+919004085554\""); // Mobile Number to send SMS to
+  updateSerial();
+  delay(1000);
+  
+  Serial1.println("SMS from  GSM module"); //SMS contents
+  updateSerial();
+  delay(1000);
+  
+}
+
+void loop()
+{
+
+}
+
+void updateSerial()
+{
+  delay(1000);
+  while(Serial.available()) 
+  {
+    Serial1.write(Serial.read());//Forward what Serial received to Serial1 Port
+  }
+  while(Serial1.available()) 
+  {
+    Serial.write(Serial1.read());//Forward what Serial1 received to Serial Port
+  }
+}
+
+
+
+
+STM32GPS
+#include <TinyGPS.h>
+float lat = 00.0000,lon = 00.0000; // create variable for latitude and longitude object 
+TinyGPS gps; // create gps object
+
+void setup(){
+Serial.begin(9600);
+Serial1.begin(9600); // connect serial
+}
+ 
+void loop(){
+    while(Serial1.available()){ // check for gps data
+    if(gps.encode(Serial1.read()))// encode gps data
+    { 
+    gps.f_get_position(&lat,&lon); // get latitude and longitude
+    // display position
+    Serial.print("Position: ");
+    Serial.print("Latitude:");
+    Serial.print(lat,6);
+    Serial.print(";");
+    Serial.print("Longitude:");
+    Serial.println(lon,6); 
+    Serial.print(lat);
+    Serial.print(" ");
+   }
+  }
+  String latitude = String(lat,6);
+  String longitude = String(lon,6);
+  Serial.println(latitude+";"+longitude);
+  delay(1000);
+}
+
+
+
+
+STM32ULTRASONIC
+//variable definitions
+const int trigPin1 = PA0;
+const int echoPin1 = PA1;
+const int trigPin2 = PA3;
+const int echoPin2 = PA4;
+const int analogip1 = PA2;
+const int analogip2 = PA7;
+int IRsensor1counter = 0;
+int IRsensor2counter = 0;
+int US1counter = 0;
+int US2counter = 0;
+float duration1;
+float distance1;
+float duration2;
+float distance2;
+
+void setup() {
+  
+pinMode(trigPin1,OUTPUT);  // Sets the trigPin as an Output
+pinMode(echoPin1,INPUT);   // Sets the echoPin as an Input
+pinMode(trigPin1,OUTPUT);
+pinMode(echoPin1,INPUT);
+pinMode(analogip1,INPUT);
+pinMode(analogip2,INPUT);
+Serial.begin(115200);         // Starts the serial communication
+Serial.print("\n");
+
+}
+
+void loop() {
+  
+//analog sensor-1 reading;
+float val1 = digitalRead(analogip1); 
+float voltage1 = (float(val1)/4096) * 3.3;
+if (val1 == 0)
+{IRsensor1counter++;
+if (IRsensor1counter > 15)
+Serial.println("\n\nBIG CRACK DETECTED BY IR SENSOR-1!");}
+else 
+{IRsensor1counter = 0;}
+delayMicroseconds(2);
+
+//analog sensor-2 reading;
+float val2 = digitalRead(analogip2); 
+float voltage2 = (float(val2)/4096) * 3.3;
+if (val2 == 0)
+{IRsensor2counter++;
+if (IRsensor2counter > 15)
+Serial.println("\n\nBIG CRACK DETECTED BY IR SENSOR-2!");}
+else 
+{IRsensor2counter = 0;}
+delayMicroseconds(2);
+
+// Clears the trigPin1
+digitalWrite(trigPin1, LOW);
+digitalWrite(trigPin2, LOW);
+delayMicroseconds(2);
+
+// Sets the trigPin1 on HIGH state for 10 micro seconds
+digitalWrite(trigPin1, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin1, LOW);
+
+// Reads the echoPin1, returns the sound wave travel time in microseconds
+duration1 = pulseIn(echoPin1, HIGH);
+
+// Sets the trigPin2 on HIGH state for 10 micro seconds
+digitalWrite(trigPin2, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin2, LOW);
+
+// Reads the echoPin2, returns the sound wave travel time in microseconds
+duration2 = pulseIn(echoPin2, HIGH);
+
+// Calculating the distances
+distance1 = duration1*0.034/2;
+if (distance1 < 4)
+{US1counter++;
+if (US1counter > 15)
+Serial.println("\n\nBIG CRACK DETECTED BY ULTRASONIC SENSOR-1!");}
+else 
+{US1counter = 0;}
+
+distance2 = duration2*0.034/2;
+if (distance2 < 4)
+{US2counter++;
+if (US2counter > 15)
+Serial.println("\n\nBIG CRACK DETECTED BY ULTRASONIC SENSOR-2!");}
+else 
+{US2counter = 0;}
+
+// Prints the distance on the Serial Monitor
+Serial.print("\n\nValue measured by IR sensor-1 is: ");
+Serial.print(val1);
+Serial.print("\nValue measured by IR sensor-2 is: ");
+Serial.print(val2);
+Serial.print("\nDistance of Ultrasonic Sensor-1 in cm: ");
+Serial.print(distance1);
+Serial.print("\nDistance of Ultrasonic Sensor-2 in cm: ");
+Serial.print(distance2);
+
+}
+
